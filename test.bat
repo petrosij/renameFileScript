@@ -3,6 +3,8 @@ title Test
 set dir1= %cd%
 setlocal enabledelayedexpansion
 
+goto test :: delete that line for release 
+
 :Start
 cls
 echo 1. test loop
@@ -14,6 +16,8 @@ if %choice%==2 exit
 :test
 cls
 echo running loop test 
-FOR %%X in ("%dir1%\*.txt") DO echo %%X
+FOR %%X in (dir *.txt) DO (
+    echo %%X
+)
 echo Done
 pause
