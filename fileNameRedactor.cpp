@@ -46,20 +46,25 @@ int main() {
     increaseNumberByN(s, 5, 10);
     cout << s << endl;
 
-    string exeName("fileNameRedactor.exe");
-    string path = _pgmptr;
-    path.erase(path.find(exeName));
-    cout << "path variable: " << path << endl;
+    // string exeName("fileNameRedactor.exe");
+    // string path_of_exe = _pgmptr;
+    // path_of_exe.erase(path_of_exe.find(exeName));
+    // cout << "path_of_exe variable (_pgmptr): " << path_of_exe << endl;
 
-    for (const auto & entry : directory_iterator(path)){
-        cout << entry.path() << endl;
-    }
+
     
     std::filesystem::path p = std::filesystem::current_path();
-    const char* oldFilePath = "C:\\src\\projects\\renameFileScript\\1.txt"; 
-    const char* newFilePath = "C:\\src\\projects\\renameFileScript\\11.txt"; 
+    
+  
+
+    cout << "path_of_exe variable (std::filesystem::path p): " << p << endl;
+    
+    char* oldFilePath = "C:\\Users\\POSkudarnov\\source\\repos\\nameRedactor\\1.txt"; 
+    string oldFileName(oldFilePath);
+    char* newFilePath = "C:\\Users\\POSkudarnov\\source\\repos\\nameRedactor\\11.txt"; 
+    string newFileName(newFilePath);
     //ofstream fileObject {"C:\\src\\projects\\renameFileScript\\1.txt"};
-    if (MoveFile (oldFilePath, newFilePath)){
+    if (MoveFile (oldFileName.c_str(), newFileName.c_str())){
         cout << "Successfully renamed" << endl;
     }else{
         DWORD errorCode = GetLastError();
@@ -68,6 +73,9 @@ int main() {
     }
     //cout << "renameStatus: " << renameStatus << endl;
     
-
+    for ( auto & entry : directory_iterator(p)){
+        cout << entry.path() << endl;
+    }
+    
     return 0;
 }
