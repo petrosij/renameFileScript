@@ -5,9 +5,12 @@
 #include <windows.h>
 #include <vector>
 #include <cstdio>
+#include <cstdlib> //rand()???
 
 using namespace std;
 using namespace filesystem;
+
+
 
 void increaseNumberByN(string& s , int numberToReplace, int increaseNum){
     s.replace(s.find(to_string(numberToReplace)), 1, to_string(numberToReplace+increaseNum));
@@ -42,9 +45,10 @@ int main() {
     
     string s = "123456789";
     int renameStatus = 0;
-
+    srand(time(NULL));
     increaseNumberByN(s, 5, 10);
     cout << s << endl;
+
 
     // string exeName("fileNameRedactor.exe");
     // string path_of_exe = _pgmptr;
@@ -73,7 +77,18 @@ int main() {
     }
     //cout << "renameStatus: " << renameStatus << endl;
     
+    std::error_code ec;
+
     for ( auto & entry : directory_iterator(p)){
+        if (entry.path().filename().string().find(".txt") != std::string::npos){
+            int rand = std::rand() % 10 + 1;
+            cout << "rand: " << rand << endl;
+            string  new_num_str = to_string(std::rand() % 10);
+            cout << "new_num_str: " << new_num_str + ".txt" << endl;
+            path old_path = entry.path().filename();
+            path new_name = new_num_str + ".txt";
+            rename(entry.path().string().c_str(), new_name.string().c_str());
+        }
         cout << entry.path() << endl;
     }
     
