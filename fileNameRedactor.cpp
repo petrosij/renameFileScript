@@ -66,8 +66,9 @@ int main() {
 
         switch (action){
             case RENAME_CALL:
-                cout << "Enter the extension of the file you want to rename: " << endl;
+                cout << "Enter the extension of the file you want to rename (Example: txt): " << endl;
                 cin >> file_extension;
+                file_extension = "." + file_extension;
                 cout << "Choose the level of the number you want to replace:" << endl;
                 cout << "Example: 10.13.66_DraftFile" + file_extension << endl;
                 cout << "         |  |  |" << endl;
@@ -111,8 +112,8 @@ int main() {
                         }
                         cout << "TTTTTTT" << endl;
                         if ((numbers_in_numeration.size() >= level_of_number)&&
-                        (numbers_in_numeration[level_of_number-1]<lower_limit_of_number)&&
-                        (numbers_in_numeration[level_of_number-1]>=upper_limit_of_number)){
+                        (numbers_in_numeration[level_of_number-1]>=lower_limit_of_number)&&
+                        (numbers_in_numeration[level_of_number-1]<=upper_limit_of_number)){
                             numbers_in_numeration[level_of_number - 1] += increase_number;
                         }
 
@@ -121,7 +122,7 @@ int main() {
                             if (i != numbers_in_numeration.size() - 1){
                                 new_num_str += to_string(numbers_in_numeration[i]) + ".";
                             }else{
-                            new_num_str += to_string(numbers_in_numeration[i]) + ".";
+                            new_num_str += to_string(numbers_in_numeration[i]);
                             }     
                         }                   
 
