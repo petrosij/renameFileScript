@@ -10,6 +10,15 @@ git checkout -b <branch name> <remote name>/<branch name>
 local ---> remote
 git push -u <remote name> <branch name>
 
+git STASH
+git stash save "message" // save changes but not commit them (to change to another branch)
+git stash save -u "message" // include untracked files
+git stash save -p "message" // patch (you choose witch files to add to stash)
+git stash list // list all stashes
+git stash show stash@{index of stash} // show info about saved changes in specified stash
+git stash apply stash@{index of stash} // apply saved changes
+git stash pop stash@{index of stash} // delete stash from stash list (you do that after "apply" command)
+
 TODO
 Не переименовывает если такой файл существует
     Нужно переименовывать в 2 этапа 
