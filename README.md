@@ -17,7 +17,8 @@ git stash save -p "message" // patch (you choose witch files to add to stash)
 git stash list // list all stashes
 git stash show stash@{index of stash} // show info about saved changes in specified stash
 git stash apply stash@{index of stash} // apply saved changes
-git stash pop stash@{index of stash} // delete stash from stash list (you do that after "apply" command)
+git stash pop stash@{index of stash} // apply stash and delete stash from the stash list
+git stash drop stash@{index of stash} // delete stash from stash list (you do that after "apply" command)
 
 TODO
 Не переименовывает если такой файл существует
